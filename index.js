@@ -1,5 +1,6 @@
 const express=require('express');
-const userRoutes=require('./routes/user_route');
+const userRoutes=require('./routes/UserRoutes');
+const recipeRoutes=require('./routes/RecipeRoutes');
 const connectDB =require('./config/db');
 
 
@@ -22,3 +23,4 @@ app.use((req,res,next)=>{
 
 
 app.use('/api/user',userRoutes);
+app.use('/api/recipe',recipeRoutes);
