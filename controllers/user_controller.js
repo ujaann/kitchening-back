@@ -44,4 +44,4 @@ const update = async (req, res) => {
     const user = User.findByIdAndUpdate(req.params.id, updated);
     res.status(200).json({ "message": `User: '${user.username}' updated`, ...user });
 }
-module.exports = { findAll, save, findById, deleteById };
+module.exports = { findAll, save, findById, deleteById,update };
