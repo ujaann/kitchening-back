@@ -1,6 +1,6 @@
 const express=require('express');
 const router=express.Router();
-const {findAll, save, findById, deleteById, update}=require('../controllers/user_controller');
+const {findAll, save, findById, deleteById, update}=require('../controllers/UserController');
 
 router.get('/',findAll);
 
