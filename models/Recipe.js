@@ -1,26 +1,34 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 /**
-* @type {mongoose.SchemaDefinitionProperty}
-*/
-const recipeSchema = mongoose.Schema({
+ * @type {mongoose.SchemaDefinitionProperty}
+ */
+const recipeSchema = mongoose.Schema(
+  {
     title: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
-    ingredients: [{
+    ingredients: [
+      {
         item: String,
-        quantity: 'Double',
-        measurement: String
-    }],
+        quantity: "Double",
+        measurement: String,
+      },
+    ],
     steps: { type: [String] },
     author: {
-        type: String,
-        required: true
+      id: mongoose.Schema.Types.ObjectId,
+      username: String,
+      required: true,
     },
-    public: Boolean, 
-},{timestamps:true});
+    public: { type: Boolean, default: false },
+    likeCount: { type: mongoose.Schema.Types.Int32, default: 0 },
+    dislikeCount: { type: mongoose.Schema.Types.Int32, default: 0 },
+  },
+  { timestamps: true }
+);
 
-const recipe=mongoose.model('recipe',recipeSchema);
+const recipe = mongoose.model("recipe", recipeSchema);
 
-module.exports=recipe;
+module.exports = recipe;
