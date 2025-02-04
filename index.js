@@ -2,6 +2,7 @@ const express = require("express");
 const userRoutes = require("./routes/UserRoutes");
 const recipeRoutes = require("./routes/RecipeRoutes");
 const connectDB = require("./config/db");
+const { errorHandler } = require("./middleware/errorHandler");
 
 const app = express();
 
@@ -20,5 +21,8 @@ app.use((req, res, next) => {
   next();
 });
 
+
 app.use("/api/user", userRoutes);
 app.use("/api/recipe", recipeRoutes);
+
+app.use(errorHandler);
