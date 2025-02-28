@@ -1,3 +1,7 @@
 /node_modules
 /api_requests
 .env
+/public/**/*.jpeg
+/public/**/*.jpg
+/public/**/*.png
+/public/**/*.gif
