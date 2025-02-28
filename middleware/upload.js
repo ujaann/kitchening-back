@@ -3,9 +3,9 @@ const path = require('path');
 const maxSize = 2 * 1024 * 1024; 
 
 // Set storage engine
-const storage = multer.diskStorage({
+const storage =(dest)=> multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'public/uploads/');
+        cb(null, `public/uploads/${dest}`);
     },
     filename: function (req, file, cb) {
         cb(null, 'IMG-' + Date.now() + path.extname(file.originalname));
@@ -32,10 +32,17 @@ function checkFileType(req,file, cb) {
 }
 
 // Init upload
-const upload = multer({
-    storage: storage,
+const uploadProfileImage = multer({
+    storage: storage('profile'),
     limits: { fileSize: maxSize }, // 1MB limit
     fileFilter: checkFileType
 }).single('profilePicture');
 
-module.exports = upload;
+// Init upload
+const uploadRecipeImage = multer({
+    storage: storage('recipe'),
+    limits: { fileSize: maxSize }, // 1MB limit
+    fileFilter: checkFileType
+}).single('recipePicture');
+
+module.exports = {uploadProfileImage, uploadRecipeImage};

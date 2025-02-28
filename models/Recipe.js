@@ -9,6 +9,7 @@ const recipeSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    cuisine:String,
     ingredients: [
       {
         item: String,
@@ -18,13 +19,19 @@ const recipeSchema = mongoose.Schema(
     ],
     steps: { type: [String] },
     author: {
-      id: mongoose.Schema.Types.ObjectId,
+      id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users",
+        required: true,
+      },
       username: String,
-      required: true,
     },
     public: { type: Boolean, default: false },
     likeCount: { type: mongoose.Schema.Types.Int32, default: 0 },
-    dislikeCount: { type: mongoose.Schema.Types.Int32, default: 0 },
+    image: {
+      type: String,
+      required: false,
+    },  
   },
   { timestamps: true }
 );

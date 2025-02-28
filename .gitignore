@@ -5,3 +5,4 @@
 /public/**/*.jpg
 /public/**/*.png
 /public/**/*.gif
+.vscode/tasks.json

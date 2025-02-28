@@ -1,6 +1,8 @@
 const express = require("express");
+const path = require('path');
 const userRoutes = require("./routes/UserRoutes");
 const recipeRoutes = require("./routes/RecipeRoutes");
+const ratingRoutes = require("./routes/RatingRoutes");
 const connectDB = require("./config/db");
 const { errorHandler } = require("./middleware/errorHandler");
 
@@ -15,6 +17,7 @@ connectDB().then(() => {
 });
 
 app.use(express.json());
+app.use(express.static('public/uploads'));
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);
@@ -22,7 +25,9 @@ app.use((req, res, next) => {
 });
 
 
+
 app.use("/api/user", userRoutes);
 app.use("/api/recipe", recipeRoutes);
+app.use("/api/rating", ratingRoutes);
 
 app.use(errorHandler);

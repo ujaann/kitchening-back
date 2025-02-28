@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const path = require("path");
 require("dotenv").config();
 const User = require("../models/User");
 const SECRET_KEY = process.env.SECRET_KEY;
@@ -87,4 +88,9 @@ const uploadImage = async (req, res) => {
   }
 };
 
-module.exports = { findAll, register, findById, deleteById, update, login, uploadImage };
+const getImage=async(req,res)=>{
+  const filePath=path.join(__dirname,`../public/uploads/IMG-1738339482715.jpg`);
+  console.log(filePath);
+  res.sendFile(filePath);
+}
+module.exports = { findAll, register, findById, deleteById, update, login, uploadImage ,getImage};
