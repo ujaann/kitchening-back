@@ -3,6 +3,7 @@ const path = require('path');
 const userRoutes = require("./routes/UserRoutes");
 const recipeRoutes = require("./routes/RecipeRoutes");
 const ratingRoutes = require("./routes/RatingRoutes");
+const commentRoutes = require("./routes/CommentRoutes");
 const connectDB = require("./config/db");
 const { errorHandler } = require("./middleware/errorHandler");
 
@@ -29,5 +30,6 @@ app.use((req, res, next) => {
 app.use("/api/user", userRoutes);
 app.use("/api/recipe", recipeRoutes);
 app.use("/api/rating", ratingRoutes);
+app.use("/api/comment", commentRoutes);
 
 app.use(errorHandler);
