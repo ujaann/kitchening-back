@@ -9,9 +9,8 @@ const ratingSchema = mongoose.Schema({
     username: String,
   },
   recipe: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "recipe",
-    required: true,
+    id: { type: mongoose.Schema.Types.ObjectId, ref: "recipe", required: true },
+    title: String,
   },
 });
 

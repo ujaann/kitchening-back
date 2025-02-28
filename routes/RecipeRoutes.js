@@ -10,6 +10,7 @@ const {
   getImage,
 } = require("../controllers/RecipeController");
 const { uploadRecipeImage } = require("../middleware/upload");
+const { authenticateToken } = require("../security/auth");
 const router = express.Router();
 
 router.get("/", getAllRecipes);
@@ -18,11 +19,11 @@ router.get("/:id", getSingleRecipe);
 
 router.post("/", createRecipe);
 
-router.delete("/:id", deleteRecipe);
+router.delete("/:id", authenticateToken,deleteRecipe);
 
-router.put("/:id", updateRecipe);
+router.put("/:id", authenticateToken,updateRecipe);
 
-router.post("/uploadImage", uploadRecipeImage, uploadImage);
+router.post("/uploadImage", authenticateToken,uploadRecipeImage, uploadImage);
 
 router.get("/getRecipeImage/:imageName",getImage);
 

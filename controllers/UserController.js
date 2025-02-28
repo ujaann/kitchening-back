@@ -89,7 +89,9 @@ const uploadImage = async (req, res) => {
 };
 
 const getImage=async(req,res)=>{
-  const filePath=path.join(__dirname,`../public/uploads/IMG-1738339482715.jpg`);
+const { imageName } = req.params;
+  console.log(imageName);
+  const filePath = path.join(__dirname, `../public/uploads/profile/${imageName}`);
   console.log(filePath);
   res.sendFile(filePath);
 }

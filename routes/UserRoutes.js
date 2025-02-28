@@ -11,8 +11,9 @@ const {
   getImage,
 } = require("../controllers/UserController");
 const { uploadProfileImage } = require("../middleware/upload");
+const {authenticateToken}=require('../security/auth');
 
-router.get("/", findAll);
+router.get("/", authenticateToken,findAll);
 
 router.get("/:id", findById);
 
@@ -20,11 +21,11 @@ router.post("/register", register);
 
 router.post("/login", login);
 
-router.delete("/:id", deleteById);
+router.delete("/:id", authenticateToken,deleteById);
 
-router.put("/:id", update);
+router.put("/:id", authenticateToken,update);
 
-router.post("/uploadImage", uploadProfileImage, uploadImage);
+router.post("/uploadImage",uploadProfileImage, uploadImage);
 
 router.get("/:id/getProfileImage", getImage);
 

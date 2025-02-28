@@ -66,7 +66,7 @@ const deleteRating = catchErrors(async (req, res) => {
 //TODO:LIKE A RECIPE
 const toggleRatingForRecipe = catchErrors(async (req, res) => {
     const { recipeId } = req.params;
-    const { userId, username } = req.body;
+    const { userId, username, } = req.body;
     console.log(req.body);
   
     //check if valid id is passed
@@ -77,7 +77,7 @@ const toggleRatingForRecipe = catchErrors(async (req, res) => {
     const recipe = await recipeModel.findById(recipeId);
     //check if user has already rated the recipe
     const rating = await ratingModel.findOne({
-      recipe: recipe._id,
+      "recipe.id": recipe._id,
       "user.id": userId,
     });
   
@@ -88,7 +88,7 @@ const toggleRatingForRecipe = catchErrors(async (req, res) => {
     //if user has not rated the recipe
     if (!rating) {
       await ratingModel.create({
-        recipe: recipe._id,
+        recipe: {id: recipe._id, title: recipe.title},
         user: { id: userId, usename: username },
       });
       recipe.likeCount += 1;
