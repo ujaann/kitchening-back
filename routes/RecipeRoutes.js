@@ -23,7 +23,9 @@ router.delete("/:id", authenticateToken,deleteRecipe);
 
 router.put("/:id", authenticateToken,updateRecipe);
 
-router.post("/uploadImage", authenticateToken,uploadRecipeImage, uploadImage);
+router.post("/uploadImage",
+   authenticateToken,
+  uploadRecipeImage, uploadImage);
 
 router.get("/getRecipeImage/:imageName",getImage);
 

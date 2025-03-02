@@ -31,7 +31,7 @@ const getSingleRecipe = catchErrors(async (req, res) => {
 
 //create a new recipe
 const createRecipe = async (req, res) => {
-  const { title, ingredients, steps, author, cuisine } = req.body;
+  const { title, ingredients, steps, author, cuisine,image } = req.body;
   //add doc to db
   try {
     const newRecipe = new recipeModel({
@@ -40,6 +40,7 @@ const createRecipe = async (req, res) => {
       steps,
       author,
       cuisine,
+      image,
     });
     const result = await newRecipe.save();
     res.status(OK).json(result);
