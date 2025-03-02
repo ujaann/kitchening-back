@@ -80,7 +80,9 @@ const updateRecipe = catchErrors(async (req, res) => {
 
 const uploadImage = async (req, res) => {
   try {
+    
     if (!req.file) {
+      
       return res
         .status(BAD_REQUEST)
         .json({ message: "No files were uploaded." });

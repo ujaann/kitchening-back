@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const path = require('path');
 const userRoutes = require("./routes/UserRoutes");
 const recipeRoutes = require("./routes/RecipeRoutes");
@@ -16,6 +17,9 @@ connectDB().then(() => {
     console.log(`App running in port: ${PORT}`);
   });
 });
+
+// ✅ Allow requests from your frontend
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 app.use(express.json());
 app.use(express.static('public/uploads'));

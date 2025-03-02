@@ -9,7 +9,7 @@ const recipeSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    cuisine:String,
+    cuisine: String,
     ingredients: [
       {
         item: String,
@@ -30,7 +30,7 @@ const recipeSchema = mongoose.Schema(
     likeCount: { type: mongoose.Schema.Types.Int32, default: 0 },
     image: {
       type: String,
-      required: false,
+      default: null,
     },  
   },
   { timestamps: true }

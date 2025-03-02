@@ -27,6 +27,8 @@ function checkFileType(req,file, cb) {
         extname) {
         return cb(null, true);
     } else {
+        
+        
         cb('Error: File Type not supported',false);
     }
 }
